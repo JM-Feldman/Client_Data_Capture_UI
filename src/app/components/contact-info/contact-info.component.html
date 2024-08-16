@@ -1,0 +1,28 @@
+<form [formGroup]="contactInfoForm" (ngSubmit)="addContactInfo()">
+  <div class="form-group">
+    <label for="workNumber">Work Number</label>
+    <input id="workNumber" type="text" formControlName="workNumber" />
+  </div>
+
+  <div class="form-group">
+    <label for="cellNumber">Cell Number</label>
+    <input id="cellNumber" type="text" formControlName="cellNumber" />
+  </div>
+
+  <div class="form-group">
+    <label for="workEmail">Work Email</label>
+    <input id="workEmail" type="email" formControlName="workEmail" />
+  </div>
+
+  <button type="submit" [disabled]="contactInfoForm.invalid">Add Contact Info</button>
+</form>
+
+<ul>
+  <li *ngFor="let contactInfo of contactInfos">
+    <strong>Work Number:</strong> {{ contactInfo.workNumber }} <br>
+    <strong>Cell Number:</strong> {{ contactInfo.cellNumber }} <br>
+    <strong>Work Email:</strong> {{ contactInfo.workEmail }} <br>
+    <button (click)="updateContactInfo(contactInfo.contactInfoId)">Update</button>
+    <button (click)="deleteContactInfo(contactInfo.contactInfoId)">Delete</button>
+  </li>
+</ul>

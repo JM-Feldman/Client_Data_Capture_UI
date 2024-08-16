@@ -1,0 +1,57 @@
+<div class="client-list">
+  <h2>Client List</h2>
+  
+  <button (click)="navigateToAddClient()">Add New Client</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Addresses</th>
+        <th>Contact Info</th>
+        <th>Basic Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients" (click)="selectClient(client)" 
+          [class.selected]="client === selectedClient">
+        <td>{{ client.clientId }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.gender }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let address of client.addresses">
+              {{ address.addressType }}: {{ address.addressLine }}, {{ address.city }}, {{ address.state }}, {{ address.postalCode }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let contactinfo of client.contactinfos">
+              <strong>Work Number:</strong> {{ contactinfo.workNumber }}<br>
+              <strong>Cell Number:</strong> {{ contactinfo.cellNumber }}<br>
+              <strong>Work Email:</strong> {{ contactinfo.workEmail }}
+            </li>
+          </ul>
+        </td>
+        <td>{{ client.basicDetails }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedClient" class="edit-buttons">
+    <h3>Selected Client: {{ selectedClient.name }}</h3>
+    <button (click)="navigateToAddClient()">Edit Client</button>
+    <button (click)="navigateToAddAddress()">Add Address</button>
+    <button (click)="navigateToAddContactInfo()">Add Contact Info</button>
+    <button (click)="navigateToEditAddress()">Edit Address</button>
+    <button (click)="navigateToEditContactInfo()">Edit Contact Info</button>
+    <button (click)="deleteClient(selectedClient.clientId)">Delete Client</button>
+  </div>
+
+  <button (click)="exportToCSV()">Export to CSV</button>
+</div>
+
+

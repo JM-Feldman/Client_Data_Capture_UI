@@ -1,0 +1,20 @@
+<div class="add-client">
+  <h1>Add Client</h1>
+  <form [formGroup]="clientForm" (ngSubmit)="addClient()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" required>
+
+    <label for="basicDetails">Basic Details:</label>
+    <input type="text" id="basicDetails" formControlName="basicDetails" required>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender" required>
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+
+    <button type="submit" [disabled]="clientForm.invalid">Add Client</button>
+  </form>
+</div>
+
